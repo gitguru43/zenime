@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import BouncingLoader from "../ui/bouncingloader/Bouncingloader";
-import axios from "axios";
 
 export default function IframePlayer({
-  animeId,
   episodeId,
   serverName,
   servertype,
@@ -14,7 +12,6 @@ export default function IframePlayer({
   playNext,
   autoNext,
 }) {
-  const apiURL = import.meta.env.VITE_API_URL;
   const baseURL = import.meta.env.VITE_BASE_IFRAME_URL;
   const [loading, setLoading] = useState(true);
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -30,24 +27,7 @@ export default function IframePlayer({
       setLoading(true);
       setIframeLoaded(false);
       setIframeSrc(""); 
-      if (serverName.toLowerCase() === "hd-4") {
-        try {
-          const { data } = await axios.get(
-            `${apiURL}/stream?id=${animeId}?ep=${episodeId}&server=${serverName}&type=${servertype}&anilistId=${animeInfo.anilistId || animeInfo.malId}&epnum=${episodeNum}`
-          );
-          const sources = data.results.streamingLink;
-          const selectedSource = sources.find(
-            (source) => source.quality === servertype
-          );
-          if (selectedSource) setIframeSrc(selectedSource.embed_frame);
-          else setIframeSrc(sources[0].embed_frame);
-        } catch (err) {
-          console.error("Failed to load HD-4 iframe:", err);
-          setIframeSrc("");
-        }
-      } else {
-        setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
-      }
+      setIframeSrc(`${baseURL}/${episodeId}/${servertype}`);
     };
     loadIframeUrl();
     // eslint-disable-next-line react-hooks/exhaustive-deps

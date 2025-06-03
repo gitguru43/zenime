@@ -124,16 +124,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
             server.serverName === "HD-2" ||
             server.serverName === "HD-3"
         );
-        const types = {
-          sub: { type: "sub", serverName: "HD-4", data_id: 1003 },
-          dub: { type: "dub", serverName: "HD-4", data_id: 1004 },
-        };
 
-        const subExists = data?.some((s) => s.type === "sub");
-        const dubExists = data?.some((s) => s.type === "dub");
-
-        if (subExists) filteredServers.push(types.sub);
-        if (dubExists) filteredServers.push(types.dub);
         const savedServerName = localStorage.getItem("server_name");
         const savedServerType = localStorage.getItem("server_type");
         let initialServer;
@@ -192,8 +183,7 @@ export const useWatch = (animeId, initialEpisodeId) => {
     )
       return;
     if (
-      (activeServerName?.toLowerCase() === "hd-1" ||
-        activeServerName?.toLowerCase() === "hd-4") &&
+      (activeServerName?.toLowerCase() === "hd-1") &&
       !serverLoading
     ) {
       setBuffering(false);
