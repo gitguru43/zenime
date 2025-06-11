@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import BouncingLoader from "../ui/bouncingloader/Bouncingloader";
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { getImageUrl, handleImageError } from "../../utils/imageProxy";
 
 function Suggestion({ keyword, className }) {
   const [suggestion, setSuggestion] = useState([]);
@@ -55,12 +56,10 @@ function Suggestion({ keyword, className }) {
               }}
             >
               <img
-                src={`https://wsrv.nl/?url=${item.poster}`}
+                src={getImageUrl(item.poster, { forceDirect: true })}
                 className="w-[50px] h-[75px] flex-shrink-0 object-cover"
                 alt=""
-                onError={(e) => {
-                  e.target.src = "https://i.postimg.cc/HnHKvHpz/no-avatar.jpg";
-                }}
+                onError={(e) => handleImageError(e, { originalUrl: item.poster })}
               />
               <div className="flex flex-col gap-y-[2px]">
                 {item?.title && (

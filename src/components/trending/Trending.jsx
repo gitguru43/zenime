@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useLanguage } from "@/src/context/LanguageContext";
 import { Link, useNavigate } from "react-router-dom";
+import { getImageUrl, handleImageError } from "../../utils/imageProxy";
 
 const Trending = ({ trending }) => {
   const { language } = useLanguage();
@@ -51,10 +52,11 @@ const Trending = ({ trending }) => {
                     className="inline-block bg-[#2a2c31] absolute w-auto left-[40px] right-0 top-0 bottom-0 max-[575px]:left-0 max-[575px]:top-0 max-[575px]:bottom-0"
                   >
                     <img
-                      src={`https://wsrv.nl/?url=${item.poster}`}
+                      src={getImageUrl(item.poster, { section: "trending", forceDirect: true })}
                       alt={item.title}
                       className="block w-full h-full object-cover hover:cursor-pointer"
                       title={item.title}
+                      onError={e => handleImageError(e, { originalUrl: item.poster })}
                     />
                   </Link>
                 </div>

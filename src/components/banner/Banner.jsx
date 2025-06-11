@@ -10,15 +10,17 @@ import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/src/context/LanguageContext";
 import "./Banner.css";
+import { getImageUrl, handleImageError } from "../../utils/imageProxy";
 
 function Banner({ item, index }) {
   const { language } = useLanguage();
   return (
     <section className="spotlight w-full h-full">
       <img
-        src={`https://wsrv.nl/?url=${item.poster}`}
+        src={getImageUrl(item.poster, { section: "spotlight", forceDirect: true })}
         alt={item.title}
         className="absolute right-0 object-cover h-full w-[80%] bg-auto max-[1200px]:w-full max-[1200px]:bottom-0"
+        onError={e => handleImageError(e, { originalUrl: item.poster })}
       />
       <div className="spotlight-overlay"></div>
       <div className="absolute flex flex-col left-0 bottom-[50px] w-[55%] p-4 z-10 max-[1390px]:w-[45%] max-[1390px]:bottom-[10px] max-[1300px]:w-[600px] max-[1120px]:w-[60%] max-md:w-[90%] max-[300px]:w-full">

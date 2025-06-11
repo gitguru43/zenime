@@ -8,6 +8,7 @@ import { useLanguage } from "@/src/context/LanguageContext";
 import { Link, useNavigate } from "react-router-dom";
 import useToolTipPosition from "@/src/hooks/useToolTipPosition";
 import Qtip from "../qtip/Qtip";
+import { getImageUrl, handleImageError } from "../../utils/imageProxy";
 
 function Sidecard({ data, label, className, limit }) {
   const { language } = useLanguage();
@@ -73,12 +74,13 @@ function Sidecard({ data, label, className, limit }) {
                     </div>
                   )}
                 <img
-                  src={`https://wsrv.nl/?url=${item.poster}`}
+                  src={getImageUrl(item.poster, { section: label, forceDirect: true })}
                   alt={item.title}
                   className="flex-shrink-0 w-[60px] h-[75px] rounded-md object-cover cursor-pointer"
                   onClick={() => navigate(`/watch/${item.id}`)}
                   onMouseEnter={() => handleMouseEnter(item, index)}
                   onMouseLeave={handleMouseLeave}
+                  onError={e => handleImageError(e, { originalUrl: item.poster })}
                 />
                 <div className="flex flex-col ml-4 space-y-2">
                   <Link

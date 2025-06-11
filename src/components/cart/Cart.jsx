@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import useToolTipPosition from "@/src/hooks/useToolTipPosition";
 import Qtip from "../qtip/Qtip";
+import { getImageUrl, handleImageError } from "../../utils/imageProxy";
 
 function Cart({ label, data, path }) {
   const { language } = useLanguage();
@@ -47,12 +48,13 @@ function Cart({ label, data, path }) {
               ref={(el) => (cardRefs.current[index] = el)}
             >
               <img
-                src={`https://wsrv.nl/?url=${item.poster}`}
+                src={getImageUrl(item.poster, { section: path, forceDirect: true })}
                 alt={item.title}
                 className="flex-shrink-0 w-[60px] h-[75px] rounded-md object-cover cursor-pointer"
                 onClick={() => navigate(`/watch/${item.id}`)}
                 onMouseEnter={() => handleImageEnter(item, index)}
                 onMouseLeave={handleImageLeave}
+                onError={e => handleImageError(e, { originalUrl: item.poster })}
               />
 
               {hoveredItem === item.id + index && window.innerWidth > 1024 && (

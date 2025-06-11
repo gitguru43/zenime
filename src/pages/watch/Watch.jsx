@@ -23,6 +23,9 @@ import Voiceactor from "@/src/components/voiceactor/Voiceactor";
 import Watchcontrols from "@/src/components/watchcontrols/Watchcontrols";
 import useWatchControl from "@/src/hooks/useWatchControl";
 import Player from "@/src/components/player/Player";
+import { getImageUrl, handleImageError } from "../../utils/imageProxy";
+import { trackWatchPage } from "@/src/utils/analytics";
+import VerifyPopup from "@/src/components/VerifyPopup/VerifyPopup";
 
 export default function Watch() {
   const location = useLocation();
@@ -180,17 +183,27 @@ export default function Watch() {
       },
     ]);
   }, [animeId, animeInfo]);
+
+  // Add useEffect for analytics tracking
+  useEffect(() => {
+    if (animeInfo && activeEpisodeNum) {
+      trackWatchPage({
+        animeId,
+        episodeId,
+        title: animeInfo?.title,
+        episodeNum: activeEpisodeNum
+      });
+    }
+  }, [animeId, episodeId, animeInfo, activeEpisodeNum]);
+
   return (
     <div className="w-full h-fit flex flex-col justify-center items-center relative">
       <div className="w-full relative max-[1400px]:px-[30px] max-[1200px]:px-[80px] max-[1024px]:px-0">
         <img
-          src={
-            !animeInfoLoading
-              ? `https://wsrv.nl/?url=${animeInfo?.poster}`
-              : "https://i.postimg.cc/rFZnx5tQ/2-Kn-Kzog-md.webp"
-          }
+          src={getImageUrl(animeInfo?.poster, { section: 'watch', forceDirect: true })}
           alt={`${animeInfo?.title} Poster`}
           className="absolute inset-0 w-full h-full object-cover filter grayscale z-[-900]"
+          onError={e => handleImageError(e, { originalUrl: animeInfo?.poster })}
         />
         <div className="absolute inset-0 bg-[#3a3948] bg-opacity-80 backdrop-blur-md z-[-800]"></div>
         <div className="relative z-10 px-4 pb-[50px] grid grid-cols-[minmax(0,75%),minmax(0,25%)] w-full h-full mt-[128px] max-[1400px]:flex max-[1400px]:flex-col max-[1200px]:mt-[64px] max-[1024px]:px-0 max-md:mt-[50px]">
@@ -535,6 +548,7 @@ export default function Watch() {
           )}
         </div>
       </div>
+      <VerifyPopup />
     </div>
   );
 }

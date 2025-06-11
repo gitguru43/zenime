@@ -1,0 +1,251 @@
+/* ============================================
+   Pop-Up Overlay & Content
+============================================ */
+
+/* Pop-Up Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1); /* Dark overlay */
+  z-index: 9999; /* Ensure it's above other elements */
+  overflow-y: auto;
+}
+
+/* Optional Logo */
+.popup-logo {
+  display: block;
+  max-width: 120px;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+}
+
+/* Pop-Up Content Box */
+.popup-content {
+  position: relative;
+  max-width: 700px;
+  width: 95%;
+  margin: 80px auto;
+  padding: 30px 20px;
+  background: linear-gradient(145deg, #ffffff, #f3f3f3);
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: #333;
+}
+
+/* Pop-Up Header */
+.popup-content h2 {
+  font-size: 1.8rem;
+  color: #007BFF;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Pop-Up Paragraphs */
+.popup-content p {
+  font-size: 1rem;
+  margin-top: 8px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* Verify Button */
+.popup-content .verify-btn {
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 8px;
+}
+
+.popup-content .verify-btn:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Instructions Paragraph */
+.popup-content .instructions {
+  font-size: 0.95rem;
+  color: #000;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* "How to Complete Verification" Button */
+.popup-content .how-to-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 5px;
+  font-size: 0.9rem;
+  padding: 8px 15px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.popup-content .how-to-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Instructions Section */
+#instructions-container .instruction-section {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+#instructions-container .instruction-section h3 {
+  font-size: 1.2rem;
+  color: #007BFF;
+  margin-bottom: 5px;
+}
+
+#instructions-container .instruction-section p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* QR Code */
+.qrcode {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   Enhanced Live Online Counter
+============================================ */
+.live-counter-container {
+  background: #000;              /* Black background */
+  padding: 8px 12px;
+  border-radius: 12px;
+  width: 200px;                  /* Adjusted width for a smaller box */
+  margin: 20px auto;             /* Centered horizontally */
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  border: 1px solid #333;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* 3D effect */
+}
+
+.counter-icon {
+  background: linear-gradient(45deg, #28a745, #7dd56f);
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.counter-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.counter-details {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Reduced gap between text and live indicator */
+}
+
+.counter-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.counter-number {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.counter-label {
+  font-size: 0.8rem;
+  color: #bbb;
+}
+
+.live-indicator {
+  width: 10px;
+  height: 10px;
+  background-color: #ff4d4d;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 77, 77, 0.7);
+  animation: pulseModern 1.5s infinite;
+}
+
+@keyframes pulseModern {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   Responsive Design for Pop-Up Content
+============================================ */
+@media (max-width: 768px) {
+  .popup-content {
+    max-width: 500px;
+    padding: 25px;
+  }
+  
+  .popup-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .popup-content p {
+    font-size: 0.95rem;
+  }
+  
+  .popup-content .verify-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-content {
+    margin: 40px auto;
+    padding: 20px 15px;
+  }
+  
+  .popup-content h2 {
+    font-size: 1.3rem;
+  }
+  
+  .popup-content p {
+    font-size: 0.9rem;
+  }
+  
+  .popup-content .verify-btn {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
+} 

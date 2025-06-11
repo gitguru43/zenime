@@ -9,6 +9,7 @@ import { FaHistory, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useLanguage } from "@/src/context/LanguageContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { getImageUrl, handleImageError } from "../../utils/imageProxy";
 
 const ContinueWatching = () => {
   const [watchList, setWatchList] = useState([]);
@@ -92,11 +93,12 @@ const ContinueWatching = () => {
                   className="inline-block bg-[#2a2c31] absolute left-0 top-0 w-full h-full group"
                 >
                   <img
-                    src={`https://wsrv.nl/?url=${item?.poster}`}
+                    src={getImageUrl(item?.poster, { section: "continue-watching", forceDirect: true })}
                     alt={item?.title}
                     className="block w-full h-full object-cover transition-all duration-300 ease-in-out group-hover:blur-[4px]"
                     title={item?.title}
                     loading="lazy"
+                    onError={e => handleImageError(e, { originalUrl: item?.poster })}
                   />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <FontAwesomeIcon
