@@ -3,7 +3,7 @@ import './VerifyPopup.css';
 
 // Popup timing rules
 const SHOW_TIME_MS = 6 * 60 * 1000;        // 6 minutes
-const FIRST_DELAY_MS = 150 * 1000;           // 1 second
+const FIRST_DELAY_MS = 150 * 1000;         // 2.5 minutes
 const WEEKLY_INTERVAL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 const VerifyPopup = () => {
@@ -12,6 +12,8 @@ const VerifyPopup = () => {
   const instructionsContainerRef = useRef(null);
   const scriptsLoadedRef = useRef(false);
   const scriptElementsRef = useRef([]);
+  const verifyWindowTimerRef = useRef(null);
+  const initialDelayTimerRef = useRef(null);
   
   // Function to handle showing instructions
   const expandInstructions = () => {
@@ -112,47 +114,55 @@ const VerifyPopup = () => {
   // Main popup timing logic
   useEffect(() => {
     const now = Date.now();
-    const popupStartTime = localStorage.getItem("popupStartTime");
     const lastPopupTime = localStorage.getItem("lastPopupTime");
+    const verifyWindowStartTime = localStorage.getItem("verifyWindowStartTime");
 
-    const shouldShowPopup = () => {
-      if (!lastPopupTime || now - parseInt(lastPopupTime, 10) >= WEEKLY_INTERVAL_MS) {
-        return true; // Show if weekly interval has passed
-      }
-      if (popupStartTime && now - parseInt(popupStartTime, 10) < SHOW_TIME_MS) {
-        return true; // Show if within the display window
-      }
-      return false;
-    };
+    // Helper: check if 7 days have passed since lastPopupTime
+    const isWeeklyIntervalPassed = !lastPopupTime || now - parseInt(lastPopupTime, 10) >= WEEKLY_INTERVAL_MS;
+    // Helper: check if we are in the 6-minute verification window
+    const isInVerifyWindow = verifyWindowStartTime && now - parseInt(verifyWindowStartTime, 10) < SHOW_TIME_MS;
 
-    if (shouldShowPopup()) {
-      if (popupStartTime) {
-        // Show instantly if within the display window
-        setIsVisible(true);
-      } else {
-        // Delay for first-time visitors
-        const timer = setTimeout(() => {
-          localStorage.setItem("popupStartTime", Date.now()); // Start timer
-          setIsVisible(true);
-        }, FIRST_DELAY_MS);
-        
-        return () => clearTimeout(timer);
-      }
-    }
-
-    // Auto-close popup after SHOW_TIME_MS
-    if (isVisible) {
-      const closeTimer = setTimeout(() => {
+    // If in verification window, always show popup
+    if (isInVerifyWindow) {
+      setIsVisible(true);
+      // Set a timer to close popup after the window ends
+      if (verifyWindowTimerRef.current) clearTimeout(verifyWindowTimerRef.current);
+      verifyWindowTimerRef.current = setTimeout(() => {
         setIsVisible(false);
-        localStorage.setItem("lastPopupTime", Date.now()); // Update the last popup display time
-      }, SHOW_TIME_MS);
-      
-      return () => clearTimeout(closeTimer);
+        localStorage.setItem("lastPopupTime", Date.now());
+        localStorage.removeItem("verifyWindowStartTime");
+      }, SHOW_TIME_MS - (now - parseInt(verifyWindowStartTime, 10)));
+      return () => clearTimeout(verifyWindowTimerRef.current);
     }
-  }, [isVisible]);
 
-  // Close popup handler
+    // If 7 days have passed since last verification, start new cycle
+    if (isWeeklyIntervalPassed) {
+      // Wait 150s before showing popup
+      if (initialDelayTimerRef.current) clearTimeout(initialDelayTimerRef.current);
+      initialDelayTimerRef.current = setTimeout(() => {
+        setIsVisible(true);
+      }, FIRST_DELAY_MS);
+      return () => clearTimeout(initialDelayTimerRef.current);
+    }
+
+    // Otherwise, hide popup
+    setIsVisible(false);
+  }, []); // Only run on mount
+
+  // When popup closes (after 6 min), cleanup timers
+  useEffect(() => {
+    return () => {
+      if (verifyWindowTimerRef.current) clearTimeout(verifyWindowTimerRef.current);
+      if (initialDelayTimerRef.current) clearTimeout(initialDelayTimerRef.current);
+    };
+  }, []);
+
+  // Close popup handler (when user clicks Verify Now)
   const handleVerify = () => {
+    // Start the 6-minute verification window
+    localStorage.setItem("verifyWindowStartTime", Date.now());
+    setIsVisible(true); // Always show during this window
+    // Optionally, call your verification function
     if (window._gD && typeof window._gD === 'function') {
       window._gD();
     } else {
