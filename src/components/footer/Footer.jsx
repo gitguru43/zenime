@@ -9,11 +9,7 @@ function Footer() {
         style={{ borderBottom: "1px solid rgba(255, 255, 255, .075)" }}
         className="w-full text-left max-[500px]:hidden"
       >
-        <img
-          src="https://i.postimg.cc/SsKY6Y9f/2H76i57.png"
-          alt={logoTitle}
-          className="w-[200px] h-[100px]"
-        />
+        <h1 className="text-2xl font-bold text-white py-4">Animeobt</h1>
       </div>
       <div className="flex py-5 flex-col w-full space-y-4 max-md:items-center max-[500px]:bg-[#373646]">
         <div className="flex w-fit items-center space-x-6 max-[500px]:hidden">

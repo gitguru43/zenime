@@ -89,13 +89,22 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6FCCKSYL3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+      // Configure GA with custom dimensions but don't send automatic page views
+      gtag('config', 'G-H6FCCKSYL3', {
+        'send_page_view': false,  // Disable automatic page views
+        'custom_map': {
+          'dimension1': 'anime_title',
+          'dimension2': 'episode_number'
+        }
+      });
+      // We'll handle page views through the React components
+      // This prevents duplicate tracking
     </script>
   </body>
 </html>

@@ -272,7 +272,7 @@ function AnimeInfo({ random = false }) {
             </p>
             <div className="flex gap-x-4 items-center mt-4 max-[575px]:w-full max-[575px]:justify-center max-[320px]:hidden">
               <img
-                src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
+                src="/images/share-icon.gif"
                 alt="Share Anime"
                 className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px]"
               />

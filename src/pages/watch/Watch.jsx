@@ -395,9 +395,10 @@ export default function Watch() {
           <div className="flex flex-col gap-y-4 items-start ml-8 max-[1400px]:ml-0 max-[1400px]:mt-10 max-[1400px]:flex-row max-[1400px]:gap-x-6 max-[1024px]:px-[30px] max-[1024px]:mt-8 max-[500px]:mt-4 max-[500px]:px-4">
             {animeInfo && animeInfo?.poster ? (
               <img
-                src={`https://wsrv.nl/?url=${animeInfo?.poster}`}
+                src={getImageUrl(animeInfo?.poster, { section: 'watch', forceDirect: true })}
                 alt=""
                 className="w-[100px] h-[150px] object-cover max-[500px]:w-[70px] max-[500px]:h-[90px]"
+                onError={e => handleImageError(e, { originalUrl: animeInfo?.poster })}
               />
             ) : (
               <Skeleton className="w-[100px] h-[150px] rounded-none" />
@@ -503,7 +504,7 @@ export default function Watch() {
       </div>
       <div className="w-full flex gap-x-4 items-center bg-[#191826] p-5 max-[575px]:px-3 max-[320px]:hidden">
         <img
-          src="https://i.postimg.cc/d34WWyNQ/share-icon.gif"
+          src="/images/share-icon.gif"
           alt="Share Anime"
           className="w-[60px] h-auto rounded-full max-[1024px]:w-[40px] max-[575px]:hidden"
         />
