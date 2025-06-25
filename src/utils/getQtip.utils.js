@@ -1,10 +1,11 @@
+// src/utils/getQtip.utils.js
 import axios from "axios";
 
 const getQtip = async (id) => {
   try {
     let workerUrls = import.meta.env.VITE_WORKER_URL?.split(",");
     let baseUrl = workerUrls?.length
-      ? workerUrls[Math.floor(Math.random() * workerUrls.length)]
+      ? workerUrls[0]    // <-- always use the first server (HD-1)
       : import.meta.env.VITE_API_URL;
     if (!baseUrl) throw new Error("No API endpoint defined.");
     const response = await axios.get(`${baseUrl}/qtip/${id.split("-").pop()}`);
@@ -16,3 +17,4 @@ const getQtip = async (id) => {
 };
 
 export default getQtip;
+
