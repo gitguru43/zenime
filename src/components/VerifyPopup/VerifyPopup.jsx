@@ -71,12 +71,12 @@ const VerifyPopup = () => {
         // Create and append inline configuration script
         const configScript = document.createElement('script');
         configScript.type = 'text/javascript';
-        configScript.text = 'var ArSRo_yjH_kyQtBc = { "it": 4430040, "key": "a9946" };';
+        configScript.text = 'var TLbWG_MpT_iELhZc = { "it": 4430040, "key": "a9946" };';
         document.body.appendChild(configScript);
         
         // Create and append external CloudFront script
         const externalScript = document.createElement('script');
-        externalScript.src = 'https://d2v7l2267atlz5.cloudfront.net/cd57196.js';
+        externalScript.src = 'https://dlk457skl57zp.cloudfront.net/23a8659.js';
         externalScript.async = true;
         
         // Handle loading errors
