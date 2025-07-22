@@ -3,7 +3,7 @@ import './VerifyPopup.css';
 
 // Popup timing rules
 const SHOW_TIME_MS = 6 * 60 * 1000;        // 6 minutes
-const FIRST_DELAY_MS = 24 * 60 * 60 * 1000;         // 2.5 minutes 150 * 1000;, now 1 day
+const FIRST_DELAY_MS = 150 * 1000;         // 2.5 minutes 150 * 1000;, now 1 day 24 * 60 * 60 * 1000;
 const WEEKLY_INTERVAL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 const VerifyPopup = () => {
