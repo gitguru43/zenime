@@ -1,3 +1,3 @@
-const website_name = "Animeobt";
+const website_name = "Animesobt";
 
 export default website_name;
