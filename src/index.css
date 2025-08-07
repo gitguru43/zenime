@@ -14,18 +14,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   overflow-y: scroll;
 }
+
 .scrollbar-visible {
   scrollbar-width: auto;
   scrollbar-color: #888 #333;
 }
+
 .scrollbar-visible::-webkit-scrollbar {
   width: 20px;
 }
@@ -37,10 +41,12 @@ body {
 .scrollbar-visible::-webkit-scrollbar-track {
   background: black;
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 ::-webkit-scrollbar {
   width: 16px;
 }
@@ -52,6 +58,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #65646a;
 }
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -59,11 +66,12 @@ body {
 .is-visible {
   opacity: 1;
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
-    --card: 0 0% 15%;       /* Darker card background */
+    --card: 0 0% 15%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
@@ -77,7 +85,7 @@ body {
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 30%;  /* Dark border */
+    --border: 240 5.9% 30%;
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
     --chart-1: 12 76% 61%;
@@ -87,6 +95,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -97,6 +106,7 @@ body {
     --border: 240 3.7% 20%;
   }
 }
+
 .dot {
   width: 4px;
   height: 4px;
@@ -108,8 +118,7 @@ body {
   display: inline-block;
 }
 
-/* ========== About-section custom styles ========== */
-
+/* === SEO Section Styles (Homepage Only) === */
 .mwb-2col {
   display: flex;
   flex-wrap: wrap;
@@ -118,8 +127,9 @@ body {
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-  margin: 2rem 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  margin: 3rem auto;
+  max-width: 1200px;
 }
 
 .mwb-left {
@@ -129,8 +139,8 @@ body {
 
 @media (min-width: 768px) {
   .mwb-left {
-    flex: 0 0 60%;
-    max-width: 60%;
+    flex: 0 0 65%;
+    max-width: 65%;
   }
 }
 
@@ -138,6 +148,7 @@ body {
   font-size: 2rem;
   line-height: 1.2;
   margin-bottom: 1rem;
+  font-weight: bold;
   color: hsl(var(--card-foreground));
 }
 
@@ -152,9 +163,14 @@ body {
 .mwb-left ul {
   margin-bottom: 1rem;
   color: hsl(var(--card-foreground));
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .mwb-left ul {
   list-style: disc inside;
+  padding-left: 1rem;
+}
+
+.mwb-left li {
+  margin-bottom: 0.5rem;
 }
