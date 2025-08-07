@@ -25,7 +25,7 @@
     />
     <meta
       property="og:description"
-      content="Animesobt is a free no‑ads anime site to watch free anime. Online anime streaming at animesobt with DUB, SUB in HD. Hianime, 9animetv, Zoro, s3taku, Animesobt."
+      content="Animesobt is a free no​‑ads anime site to watch free anime. Online anime streaming at animesobt with DUB, SUB in HD. Hianime, 9animetv, Zoro, s3taku, Animesobt."
     />
     <meta
       property="og:image"
@@ -43,7 +43,7 @@
     />
     <meta
       name="twitter:description"
-      content="Stream free English‑subbed and dubbed anime online with no ads. Enjoy hassle‑free viewing and daily updates on Animesobt!"
+      content="Stream free English​‑subbed and dubbed anime online with no ads. Enjoy hassle​‑free viewing and daily updates on Animesobt!"
     />
     <meta
       name="twitter:image"
@@ -58,7 +58,7 @@
         "@context": "https://schema.org",
         "@type": "VideoObject",
         "name": "Animesobt - Watch Anime Free",
-        "description": "Animesobt offers free streaming of English‑subbed and dubbed anime series and movies. No account needed and no ads!",
+        "description": "Animesobt offers free streaming of English​‑subbed and dubbed anime series and movies. No account needed and no ads!",
         "thumbnailUrl": "https://i.postimg.cc/pVqqMKkR/2IAVHlI.webp",
         "uploadDate": "2024-11-08",
         "contentUrl": "https://animesobt.xyz",
@@ -98,23 +98,25 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <!-- Google tag (gtag.js) -->
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6FCCKSYL3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}      
-      gtag('js', new Date());
-      // Configure GA with custom dimensions but don't send automatic page views
-      gtag('config', 'G-H6FCCKSYL3', {
-        'send_page_view': false,  // Disable automatic page views
-        'custom_map': {
-          'dimension1': 'anime_title',
-          'dimension2': 'episode_number'
-        }
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-H6FCCKSYL3", {
+        send_page_view: false,
+        custom_map: {
+          dimension1: "anime_title",
+          dimension2: "episode_number",
+        },
       });
     </script>
 
-    <!-- About Section moved below React content -->
+    <!-- SEO Intro Text: only in index.html -->
     <div class="mwb-2col">
       <div class="mwb-left">
         <h1 class="mw-heading">Animesobt - The Best Site to Watch Anime Online for Free</h1>
