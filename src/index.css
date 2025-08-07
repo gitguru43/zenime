@@ -124,3 +124,53 @@ body {
   background: rgba(255, 255, 255, 0.3);
   display: inline-block;
 }
+
+/* ========== About-section custom styles ========== */
+
+.mwb-2col {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.mwb-left {
+  flex: 1 1 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .mwb-left {
+    flex: 0 0 60%;
+    max-width: 60%;
+  }
+}
+
+.mw-heading {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.mwb-left h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.mwb-left p,
+.mwb-left ul {
+  margin-bottom: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.mwb-left ul {
+  list-style: disc inside;
+}
