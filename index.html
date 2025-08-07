@@ -96,7 +96,25 @@
     />
   </head>
   <body>
-    <!-- About Section -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6FCCKSYL3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}      
+      gtag('js', new Date());
+      // Configure GA with custom dimensions but don't send automatic page views
+      gtag('config', 'G-H6FCCKSYL3', {
+        'send_page_view': false,  // Disable automatic page views
+        'custom_map': {
+          'dimension1': 'anime_title',
+          'dimension2': 'episode_number'
+        }
+      });
+    </script>
+
+    <!-- About Section moved below React content -->
     <div class="mwb-2col">
       <div class="mwb-left">
         <h1 class="mw-heading">Animesobt - The Best Site to Watch Anime Online for Free</h1>
@@ -123,23 +141,5 @@
         <p>If you’re looking for a safe and reliable anime streaming site, try Animesobt. If you enjoy it, please share it with others and bookmark our site!</p>
       </div>
     </div>
-
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H6FCCKSYL3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}      
-      gtag('js', new Date());
-      // Configure GA with custom dimensions but don't send automatic page views
-      gtag('config', 'G-H6FCCKSYL3', {
-        'send_page_view': false,  // Disable automatic page views
-        'custom_map': {
-          'dimension1': 'anime_title',
-          'dimension2': 'episode_number'
-        }
-      });
-    </script>
   </body>
 </html>
